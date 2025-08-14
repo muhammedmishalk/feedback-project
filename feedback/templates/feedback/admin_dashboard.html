@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="mb-4">Admin Dashboard</h2>
+
+<!-- Analytics Cards -->
+<div class="row mb-4">
+  <!-- Average Rating -->
+  <div class="col-md-4">
+    <div class="card text-white bg-primary mb-3 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">Average Rating</h5>
+        <p class="card-text display-6">⭐ {{ avg_rating }}/5</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Total Feedback -->
+  <div class="col-md-4">
+    <div class="card text-white bg-success mb-3 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">Total Feedback</h5>
+        <p class="card-text display-6">{{ total_feedback }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rating Breakdown -->
+  <div class="col-md-4">
+    <div class="card bg-light mb-3 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">Rating Breakdown</h5>
+        <ul class="list-group list-group-flush">
+          {% for r in rating_distribution %}
+            <li class="list-group-item">{{ r.rating }}★: {{ r.count }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Feedback Table -->
+<h4 class="mt-5">All Feedback</h4>
+<table class="table table-bordered table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Mobile</th>
+      <th>Rating</th>
+      <th>Comments</th>
+      <th>Submitted At</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for f in feedbacks %}
+    <tr>
+      <td>{{ f.name }}</td>
+      <td>{{ f.email }}</td>
+      <td>{{ f.mobile }}</td>
+      <td>{{ f.rating }}</td>
+      <td>{{ f.comments }}</td>
+      <td>{{ f.submitted_at|date:"Y-m-d H:i" }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Submit Feedback{% endblock %}
+
+{% block content %}
+<h2 class="text-center mb-4">Submit Your Feedback</h2>
+
+<div class="form-container">
+    <form method="post" class="row g-3">
+        {% csrf_token %}
+        
+        <!-- Name -->
+        <div class="col-12">
+            <label for="name" class="form-label">Name</label>
+            {{ form.name }}
+        </div>
+
+        <!-- Mobile -->
+        <div class="col-12">
+            <label for="mobile" class="form-label">Mobile</label>
+            {{ form.mobile }}
+        </div>
+
+        <!-- Email -->
+        <div class="col-12">
+            <label for="email" class="form-label">Email</label>
+            {{ form.email }}
+        </div>
+
+        <!-- Rating -->
+        <div class="col-5">
+            <label for="rating" class="form-label">Rating</label>
+            <div class="star-rating">
+                <!-- Star 5 (Rightmost) -->
+                <input type="radio" id="star5" name="rating" value="5" class="rating-input" {% if form.rating.value == '5' %}checked{% endif %}>
+                <label for="star5" class="star">&#9733;</label>
+
+                <!-- Star 4 -->
+                <input type="radio" id="star4" name="rating" value="4" class="rating-input" {% if form.rating.value == '4' %}checked{% endif %}>
+                <label for="star4" class="star">&#9733;</label>
+
+                <!-- Star 3 -->
+                <input type="radio" id="star3" name="rating" value="3" class="rating-input" {% if form.rating.value == '3' %}checked{% endif %}>
+                <label for="star3" class="star">&#9733;</label>
+
+                <!-- Star 2 -->
+                <input type="radio" id="star2" name="rating" value="2" class="rating-input" {% if form.rating.value == '2' %}checked{% endif %}>
+                <label for="star2" class="star">&#9733;</label>
+
+                <!-- Star 1 (Leftmost) -->
+                <input type="radio" id="star1" name="rating" value="1" class="rating-input" {% if form.rating.value == '1' %}checked{% endif %}>
+                <label for="star1" class="star">&#9733;</label>
+            </div>
+        </div>
+
+        <!-- Comments -->
+        <div class="col-12">
+            <label for="comments" class="form-label">Comments</label>
+            {{ form.comments }}
+        </div>
+
+        <!-- Submit Button -->
+        <div class="col-12 text-center">
+            <button type="submit" class="btn btn-primary w-100">Submit</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
